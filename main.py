@@ -1,8 +1,17 @@
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
+from telegram import Bot
 
 import time
+import asyncio
 import tkinter as tk
+
+bot_token = 'BOT_TOKEN'
+chat_id = 'CHAT_ID'
+
+def send_telegram_message(message):
+    bot = Bot(token=bot_token)
+    asyncio.run(bot.send_message(chat_id=chat_id, text=message))
 
 # Fonction pour remplir manuellement le captcha
 def remplir_captcha_manuellement():
@@ -20,7 +29,7 @@ def show_popup():
   popup.attributes('-topmost', True)
   popup.grab_set()
   popup.mainloop()  # Keeps the popup window open until closed
-  
+
 # Configuration du webdriver
 driver_path = ChromeDriverManager().install()
 driver = webdriver.Chrome()
@@ -60,6 +69,9 @@ if url_actuelle == url_souhaitee:
         # Inspecter la page pour détecter les rendez-vous disponibles
         if "Aucun créneau disponible" not in driver.page_source:
             show_popup()
+            send_telegram_message("Un rendez-vous est disponible !")
+            send_telegram_message("GO GO GO GO GO GO GO GO GO")
+            send_telegram_message("https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4409/cgu/")
             # Ajoutez ici toute autre action que vous souhaitez effectuer, par exemple envoyer un e-mail ou un message
         else:
             print("Aucun rendez-vous est disponible pour l'instant !")
@@ -80,4 +92,4 @@ else:
     print("Vous n'êtes pas sur la bonne page. Vous etes sur la page :")
     print(url_actuelle)
     
-
+send_telegram_message("Tough luck, time to retry again!")

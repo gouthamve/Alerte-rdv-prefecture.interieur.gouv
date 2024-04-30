@@ -6,7 +6,7 @@ Ce programme surveille la disponibilité des rendez-vous sur le site de la préf
 ## Utilisation
 
 1. **Configuration du webdriver** :
-   - Assurez-vous d'avoir installé les dépendances requises en exécutant `pip install webdriver_manager selenium`.
+   - Assurez-vous d'avoir installé les dépendances requises en exécutant `pip install webdriver_manager selenium python-telegram-bot`.
    - Vous devez également avoir [Google Chrome](https://www.google.com/chrome/) installé sur votre machine.
 
 2. **Remplir le captcha manuellement** :
