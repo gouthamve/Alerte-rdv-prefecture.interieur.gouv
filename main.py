@@ -1,7 +1,9 @@
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
+
 import time
 import tkinter as tk
+
 # Fonction pour remplir manuellement le captcha
 def remplir_captcha_manuellement():
     print("Veuillez remplir le captcha et appuyez sur Entrée une fois terminé...")
@@ -24,13 +26,16 @@ driver_path = ChromeDriverManager().install()
 driver = webdriver.Chrome()
 
 # Ouvrir la page du captcha
-driver.get('https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4564/cgu/')
+driver.get('https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4409/cgu/')
 
 # Remplir manuellement le captcha
 remplir_captcha_manuellement()
 
+# URL de la page souhaitée
+url_souhaitee = "https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4409/creneau/"
+
 # Attendre que la page avec les rendez-vous soit accessible
-driver.get('https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4564/creneau/')
+driver.get(url_souhaitee)
 
 # Définir l'intervalle de rafraîchissement
 interval_refresh = 600  # en secondes
@@ -40,8 +45,6 @@ max_actualisations = 6
 
 # Variable pour stocker le nombre d'actualisations effectuées
 nb_actualisations = 0
-# URL de la page souhaitée
-url_souhaitee = "https://www.rdv-prefecture.interieur.gouv.fr/rdvpref/reservation/demarche/4564/creneau/"
 url_actuelle = driver.current_url
 # Vérifier si l'URL actuelle est la même que l'URL souhaitée
 if url_actuelle == url_souhaitee:
